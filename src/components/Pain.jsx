@@ -6,24 +6,24 @@ import Sleep from './Sleep';
 import Clean from './Clean';
 
 class Pain extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
   }
-  render(){
-    return(
-      <div>
-        <Eat />
-        <Sleep />
-        <Clean />
-        <Love />
-        <h4>name: {this.props.name} </h4>
-        <p>overall health status: {this.props.overallHealth}</p>
-        <p>emotional pain status: {this.props.emoPain}</p>
-        <p>physical pain status: {this.props.physPain}</p>
-        <p>mess status: {this.props.mess}</p>
-      </div>
-    )
+  render() {
+    return (<div>
+      <Eat/>
+      <Sleep/>
+      <Clean/>
+      <Love/>
+      <h4>name: {this.props.name}
+      </h4>
+      <p>overall health status: {this.props.overallHealth}</p>
+      <p>emotional pain status: {this.props.emoPain}</p>
+      <p>physical pain status: {this.props.physPain}</p>
+      <p>mess status: {this.props.mess}</p>
+      <p>age: {this.props.formattedSinceBirth}</p>
+    </div>)
   }
 }
 
@@ -32,7 +32,7 @@ Pain.propTypes = {
   emoPain: PropTypes.number.isRequired,
   physPain: PropTypes.number.isRequired,
   overallHealth: PropTypes.number.isRequired,
-  mess: PropTypes.number.isRequired
-
+  mess: PropTypes.number.isRequired,
+  formattedSinceBirth: PropTypes.string.isRequired
 };
 export default Pain;

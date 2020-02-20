@@ -9,28 +9,17 @@ function Game(props) {
     backgroundSize: "cover",
     height: "700px",
     border: "5px solid orange",
-    color: "orange",
+    color: "orange"
   }
-  return(
+  return (<div>
+    <div style={gameStyles}></div>
+    Keep your buddy kicking!
     <div>
-      <div style={gameStyles}>
-      </div>
-      Keep your buddy kicking!
       <div>
-        <div>
-          <hr/>
-          {props.tamaList.map((tama) =>
-            <Pain name={tama.name}
-              emoPain={tama.emoPain}
-              physPain={tama.physPain}
-              overallHealth={tama.overallHealth}
-              mess={tama.mess}
-              key={tama.id}/>
-          )}
-        </div>
+        <hr/> {props.tamaList.map((tama) => <Pain name={tama.name} emoPain={tama.emoPain} physPain={tama.physPain} overallHealth={tama.overallHealth} mess={tama.mess} formattedSinceBirth={tama.formattedSinceBirth} key={tama.id}/>)}
       </div>
     </div>
-  )
+  </div>)
 }
 
 Game.propTypes = {
