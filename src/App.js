@@ -3,10 +3,13 @@ import './App.css';
 import Game from './components/Game';
 import Header from './components/Header';
 import NewTama from './components/NewTama';
+import PropTypes from 'prop-types';
 import Home from './components/Home';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Moment from 'moment';
+import {Link, withRouter} from "react-router-dom";
+import GameController from './components/GameController'
 
 const bodyStyle = {
   color: "orange",
@@ -22,8 +25,12 @@ class App extends React.Component {
     this.handleAddingNewTamaToList = this.handleAddingNewTamaToList.bind(this);
 
   }
+
+  gameOver = () => {
+      this.state.masterTamaList.forEach((tama) => tama.overallHealth <= 0 ? console.log("you looser") : console.log('workinit!') );
+  }
+
   onTamaEat = (a,b,c,d) => {
-    console.log(a,b,c,d);
     let newMasterTamaList = this.state.masterTamaList.slice();
     newMasterTamaList.forEach((tama) => tama.overallHealth += a);
     newMasterTamaList.forEach((tama) => tama.physPain += b);
@@ -43,6 +50,7 @@ class App extends React.Component {
     console.log('hi');
   }
   updateBirthElapsedTime() {
+    this.gameOver();
     console.log('yo');
     let newMasterTamaList = this.state.masterTamaList.slice();
     newMasterTamaList.forEach((tama) => tama.formattedSinceBirth = (tama.sinceBirth).fromNow(true));
@@ -72,7 +80,7 @@ class App extends React.Component {
           <Route path='/newgame' render={() =>< NewTama onTamaCreation = {
               this.handleAddingNewTamaToList
             } />}/>
-          <Route path='/game' render={() =>< Game
+          <Route path='/gamecontroller' render={() =>< GameController
             tamaList = {this.state.masterTamaList}
             onTamaEat = {this.onTamaEat}
             />}/>

@@ -20,7 +20,7 @@ function NewTama(props) {
       sinceBirth: new Moment()
     });
     _name.value = '';
-    props.history.push("/game");
+    props.history.push("/gamecontroller");
 
   }
 
