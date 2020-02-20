@@ -16,9 +16,11 @@ function Game(props) {
     Keep your buddy kicking!
     <div>
       <div>
-        <hr/> {props.tamaList.map((tama) => <Pain name={tama.name} emoPain={tama.emoPain} physPain={tama.physPain} overallHealth={tama.overallHealth} mess={tama.mess} formattedSinceBirth={tama.formattedSinceBirth} key={tama.id}/>)}
+        <hr/> {props.tamaList.map((tama) => <Pain name={tama.name} emoPain={tama.emoPain} physPain={tama.physPain} overallHealth={tama.overallHealth} mess={tama.mess} formattedSinceBirth={tama.formattedSinceBirth} key={tama.id} onTamaEat={props.onTamaEat}/>)}
+
       </div>
     </div>
+
   </div>)
 }
 

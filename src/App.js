@@ -20,9 +20,16 @@ class App extends React.Component {
       masterTamaList: []
     };
     this.handleAddingNewTamaToList = this.handleAddingNewTamaToList.bind(this);
+
   }
-  tamaEat() {
-    console.log("hi");
+  onTamaEat = (a,b,c,d) => {
+    console.log(a,b,c,d);
+    let newMasterTamaList = this.state.masterTamaList.slice();
+    newMasterTamaList.forEach((tama) => tama.overallHealth += a);
+    newMasterTamaList.forEach((tama) => tama.physPain += b);
+    newMasterTamaList.forEach((tama) => tama.mess += c);
+    newMasterTamaList.forEach((tama) => tama.emoPain += d);
+    this.setState({masterTamaList: newMasterTamaList});
   }
   componentDidMount() {
     this.sinceBirthUpdateTimer = setInterval(() => this.updateBirthElapsedTime(), 1000);
@@ -39,7 +46,7 @@ class App extends React.Component {
     console.log('yo');
     let newMasterTamaList = this.state.masterTamaList.slice();
     newMasterTamaList.forEach((tama) => tama.formattedSinceBirth = (tama.sinceBirth).fromNow(true));
-    newMasterTamaList.forEach((tama) => tama.overallHealth -= 1);
+    newMasterTamaList.forEach((tama) => tama.overallHealth -= 5);
     newMasterTamaList.forEach((tama) => tama.emoPain += 5);
     newMasterTamaList.forEach((tama) => tama.physPain += 10);
     newMasterTamaList.forEach((tama) => tama.mess += 10);
@@ -65,9 +72,10 @@ class App extends React.Component {
           <Route path='/newgame' render={() =>< NewTama onTamaCreation = {
               this.handleAddingNewTamaToList
             } />}/>
-          <Route path='/game' render={() =>< Game tamaList = {
-              this.state.masterTamaList
-            } />}/>
+          <Route path='/game' render={() =>< Game
+            tamaList = {this.state.masterTamaList}
+            onTamaEat = {this.onTamaEat}
+            />}/>
         </Switch>
       </BrowserRouter>
 
